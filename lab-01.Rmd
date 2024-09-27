@@ -134,7 +134,7 @@ visitors %>%
 
 *How many regions have more than 50 tourist attraction in the data set? (Hint: You will need to tabulate the data before filtering.)*
 
-```{r Ex_g}
+```{r Ex_gb}
 visitors %>% 
   count(region) %>%
   filter(n > 50)
@@ -159,11 +159,12 @@ visitors %>%
 *Perform the same calculation for the 2021 admissions data.*
 
 ```{r Ex_h}
-#visitors %>% 
-#  ______(
-#    __________,
-#    __________
-#  )
+
+visitors %>% 
+  summarise(
+    mean_2021 = mean(n_2021, na.rm = TRUE),
+    med_2021 = median(n_2021, na.rm = TRUE)
+  )
 ```
 
 All values in the output are `NA`!
@@ -172,13 +173,13 @@ All values in the output are `NA`!
 
 *What does `NA` stand for and why are you getting this as your answer to the previous question.*
 
-**Write your answer here**
+**Stands for 'not applicable', and this is the answer as there are several values in n_2021 that are N/A, meaning they were inputted as data other than doubles.**
 
 ### Exercise j.
 
 *Look at the help pages for the `mean()` and `median()` commands to see what the input argument `na.rm` does. Edit your code from exercise h so that it computes the summary statistics where data is available.*
 
-**Write your answer here**
+**Answer above**
 
 ## Question 7
 
@@ -197,7 +198,7 @@ visitors %>%
 
 *Observe in question 6 that the mean statistics across all settings are much larger than the corresponding median statistics. Discuss in your group what this suggests about the data.*
 
-**Write your answer here**
+**The removed data values were possibly much smaller, and that is the reason for the skew.**
 
 ## Question 8
 
@@ -226,8 +227,8 @@ visitors_with_nations %>%
 *How many tourist attractions are there in each of the 4 nations? From this, discuss in your group how reliable you think the inter-quartile estimates are.*
 
 ```{r Ex_l}
-#________ %>%
-#  ______(_______)
+visitors_with_nations %>%
+  count(nation)
 ```
 
 # Challenging Exercises
@@ -237,7 +238,9 @@ visitors_with_nations %>%
 *Within each of the 4 nations, what is the proportion of tourist attractions that have free admission for all visitors?*
 
 ```{r Ex_m}
-# Write your code here
+visitors_with_nations %>%
+  select(attraction, admission, setting, region, nation, n_2021, n_2022) %>%
+  mutate(proportion = )
 
 
 ```
