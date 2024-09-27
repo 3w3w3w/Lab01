@@ -228,7 +228,10 @@ visitors_with_nations %>%
 
 ```{r Ex_l}
 visitors_with_nations %>%
-  count(nation)
+  filter (
+    admission == "free"
+  )
+  count(nation, free)
 ```
 
 # Challenging Exercises
